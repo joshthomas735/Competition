@@ -15,6 +15,8 @@ public:
     void resizeLengths();
     bool prepareData();
     void sortData();
+    int partition (vector <char*>&, int, int);
+    void QuickSort(vector<char*>&, int, int);
     void selectionSort(int**&, int);
     void moveLargest(int**&, int);
     void mergeAlpha(vector <char*>&, vector <char*>&, vector <char*>&);

@@ -91,6 +91,7 @@ bool SortingCompetition :: prepareData(){
 
 void SortingCompetition :: sortData(){
     selectionSort(sortableLengths, lengthsCounter);
+    //QuickSort(sortableArray, 0, (sortableArray.size()-1));
     mergeSortLength(sortableArray);
     int counter1 = 0;
     int counter = 0;
@@ -117,6 +118,56 @@ void SortingCompetition :: sortData(){
         tempWords.clear();
     }
 }
+
+void SortingCompetition :: QuickSort(vector<char*>& words, int left, int right){
+    int i = left;
+    int j = right;
+    //char* pivot =
+    /*if ((strlen(words[left]) >= strlen(words[right]) && strlen(words[left]) <= strlen(words[(left+right)/2])) || (strlen(words[left]) >= strlen(words[(left+right)/2]) && strlen(words[left]) <= strlen(words[right])))
+        pivot = strlen(words[left]);
+    else if((strlen(words[right]) >= strlen(words[left]) && strlen(words[right]) <= strlen(words[(left+right)/2])) || (strlen(words[right]) >= strlen(words[(left+right)/2]) && strlen(words[right]) <= strlen(words[left])))
+        pivot = strlen(words[right]);
+    else
+        pivot = strlen(words[(left+right)/2]);
+    while (i <= j){
+        while (strlen(words[i]) < pivot){
+            i++;
+        }
+        while (strlen(words[j]) > pivot){
+            j--;
+        }
+        if (i <= j){
+            swap(words[i], words[j]);
+            i++;
+            j--;
+        }
+        if (left < j)
+            QuickSort(words,left, j);
+        if (i < right)
+            QuickSort(words, i, right);
+    }
+    return;*/
+}
+
+int SortingCompetition :: partition (vector <char*>& words, int top, int bottom){
+    int pivot = strlen(words[top]);
+    int i = top;
+    int j = bottom + 1;
+    while(top < bottom){
+        while(strlen(words[top]) <= pivot && i <= bottom){
+            i++;
+        }
+        while(strlen(words[j]) > pivot){
+            j--;
+        }
+        if (i >= j){
+            break;
+        }
+        swap(words[i], words[j]);
+    }
+    return j;
+}
+
 void SortingCompetition :: selectionSort(int** &sortArray, int size){
     if (size == 1){
         return;
@@ -202,7 +253,7 @@ void SortingCompetition :: mergeSortLength(vector <char*> &words){
 }
 
 void SortingCompetition :: outputData(){
-    cout << "Sorted Array: " << endl;
+    cout << "Sorted Array: "<< sortableArray.size() << " words" << endl;
     for (int i = 0; i < sortableArray.size(); i++){
         cout << sortableArray[i] << endl;
     }
