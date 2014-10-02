@@ -12,9 +12,12 @@ public:
     SortingCompetition(const string&);
     void setFileName(const string&);
     bool readData();
-    void resizeLengths();
     bool prepareData();
     void sortData();
+    void outputData();
+private:
+    ~SortingCompetition();
+    void resizeLengths();
     int partition (vector <char*>&, int, int);
     void QuickSort(vector<char*>&, int, int);
     void selectionSort(int**&, int);
@@ -23,9 +26,6 @@ public:
     void mergeSortAlpha(vector <char*> &words);
     void mergeLength(vector <char*>&, vector <char*>&, vector <char*>&);
     void mergeSortLength(vector <char*>&);
-    void outputData();
-    ~SortingCompetition();
-private:
     int** lengths;
     int** sortableLengths;
     vector <char*> wordArray;
