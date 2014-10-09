@@ -11,6 +11,7 @@ int main()
     clock_t start;
     //std::chrono::time_point<std::chrono::system_clock> start, end;
     SortingCompetition* s1 = new SortingCompetition("input.txt");
+    s1 ->readData();
     s1->prepareData();
     //start = std::chrono::system_clock::now();
     start = clock();
@@ -23,7 +24,6 @@ int main()
     //std::cout << "finished computation at " << std:: ctime(&end_time) << " elapsed time: " << elapsed_seconds.count() << "s\n";
     //cout << endl;
     s1 -> outputData();
-
     return 0;
 }
 

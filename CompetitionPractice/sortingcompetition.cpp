@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include "stdlib.h"
 
 using namespace std;
 
@@ -11,7 +12,6 @@ SortingCompetition::SortingCompetition(const string& inputFileName){
     lengths = new int*[20];
     fileName = inputFileName;
     lengthsCounter = 0;
-    readData();
     return;
 }
 
@@ -29,11 +29,21 @@ bool SortingCompetition :: readData(){
     while (!fin.eof()){
         fin >> buff;
         int length = strlen(buff);
-        char* word = new char[length+1];
-        strcpy(word, buff);
-        for (int i = 0; i < length; i++){
-            word[i] = tolower(word[i]);
+        char* word = new char[length+3];
+        if (length < 10){
+            word[0] = '0';
+            word[1] = '0' + length;
         }
+        else{
+            int random = length;
+            word[1] = '0' + random % 10;
+            random /= 10;
+            word[0] = '0' + random;
+        }
+        for (int i = 0; i < length; i++){
+            buff[i] = tolower(buff[i]);
+        }
+        strcat(word, buff);
         wordArray.push_back(word);
         if (lengthsCounter == 0){
             lengths[0] = new int[2];
@@ -254,8 +264,14 @@ void SortingCompetition :: mergeSortLength(vector <char*> &words){
 
 void SortingCompetition :: outputData(){
     cout << "Sorted Array: "<< sortableArray.size() << " words" << endl;
+    char* buff = new char[3];
     for (int i = 0; i < sortableArray.size(); i++){
-        cout << sortableArray[i] << endl;
+        buff[0] = sortableArray[i][0];
+        buff[1] = sortableArray[i][1];
+        for (int x = 2; x < atoi(buff) + 2; x++){
+            cout << sortableArray[i][x];
+        }
+        cout << endl;
     }
 }
 
