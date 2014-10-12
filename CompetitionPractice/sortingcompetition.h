@@ -16,22 +16,30 @@ public:
     void sortData();
     void outputData();
 private:
+    static int StringCompare(const void*, const void*);
+    void radixSortChar(char**&);
+    void innerSortChar(char**&, int, int);
+    void radixMergeChar(char**&, char**&, int&, int);
     ~SortingCompetition();
-    void resizeLengths();
-    int partition (vector <char*>&, int, int);
-    void QuickSort(vector<char*>&, int, int);
-    void selectionSort(int**&, int);
-    void moveLargest(int**&, int);
-    void mergeAlpha(vector <char*>&, vector <char*>&, vector <char*>&);
-    void mergeSortAlpha(vector <char*> &words);
-    void mergeLength(vector <char*>&, vector <char*>&, vector <char*>&);
-    void mergeSortLength(vector <char*>&);
-    int** lengths;
-    int** sortableLengths;
+    int** radixCharHelper;
+    char** sortableArray2;
     vector <char*> wordArray;
-    vector <char*> sortableArray;
     string fileName;
-    int lengthsCounter;
+    //void resizeLengths();
+    //int partition (vector <char*>&, int, int);
+    //void QuickSort(vector<char*>&, int, int);
+    //void selectionSort(int**&, int);
+    //void moveLargest(int**&, int);
+    //void mergeAlpha(vector <char*>&, vector <char*>&, vector <char*>&);
+    //void mergeSortAlpha(vector <char*> &words);
+    //void mergeLength(vector <char*>&, vector <char*>&, vector <char*>&);
+    //void mergeSortLength(vector <char*>&);
+    //void radixSort(vector<char*>&);
+    //void innerSort(vector <char*>&);
+    //void radixMerge(vector <char*>&, vector <char*>&, int&);
+    //int** lengths;
+    //vector <char*> sortableArray;
+    //int lengthsCounter;
 };
 
 #endif // SORTINGCOMPETITION_H

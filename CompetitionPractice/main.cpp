@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include "sortingcompetition.h"
-//#include <chrono>
 #include <ctime>
 
 
@@ -9,20 +8,13 @@ int main()
 {
     double diff;
     clock_t start;
-    //std::chrono::time_point<std::chrono::system_clock> start, end;
     SortingCompetition* s1 = new SortingCompetition("input.txt");
     s1 ->readData();
     s1->prepareData();
-    //start = std::chrono::system_clock::now();
     start = clock();
     s1 ->sortData();
     diff = ( std::clock() - start ) / (double)CLOCKS_PER_SEC;
     std:: cout<<"printf: "<< diff <<'\n';
-    //end = std::chrono::system_clock::now();
-    //std::chrono::duration<double> elapsed_seconds = end-start;
-    //std::time_t end_time = std::chrono::system_clock::to_time_t(end);
-    //std::cout << "finished computation at " << std:: ctime(&end_time) << " elapsed time: " << elapsed_seconds.count() << "s\n";
-    //cout << endl;
     s1 -> outputData();
     return 0;
 }
