@@ -78,11 +78,14 @@ bool SortingCompetition :: readData(){
                 break;
             }
         }
+        //This might be splitting hairs, but all these if statements could be swtich
+        //statements if we wanted to. It already looks clean, but the switch statements
+        //would be a little bit shorter
         else{
             int random = length;
             word[1] = '0' + random % 10;
             random/=10;
-            word[0] = '0' + random;
+            word[0] = '0' + random; //can we combine these two lines into: word[0]=random/10; ?
             random = length;
             if (random/10 == 1){
                 if (random % 10 == 0){
@@ -332,6 +335,7 @@ bool SortingCompetition :: readData(){
         }*/
     }
     fin.close();
+    //Do we need to delete word and buff? I think so
     return true;
 }
 
@@ -378,6 +382,11 @@ void SortingCompetition :: radixSortChar(char**& words){
     int threesC = 0;
     int foursC = 0;
     int fivesC = 0;
+    //These should all be changed to else if statements at the very least
+    //I know its a small amount of steps, but the computer has to check
+    //every one of these if statements before it moves on. That just add that
+    //much more computational time. I know its small in comparison to the 2.5
+    //million words we are sorting, but its something to consider
     for (int i = 0; i < wordArray.size(); i++){
         if (words[i][0] - '0' == 0){
             zeros[zerosC] = words[i];
