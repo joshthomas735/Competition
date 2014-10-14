@@ -87,218 +87,228 @@ bool SortingCompetition :: readData(){
             random/=10;
             word[0] = '0' + random; //can we combine these two lines into: word[0]=random/10; ?
             random = length;
+
             if (random/10 == 1){
-                if (random % 10 == 0){
+                switch(random%10){
+                case 0:
                     radixCharHelper[random/10][0]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 1){
+                    break;
+                case 1:
                     radixCharHelper[random/10][1]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 2){
+                    break;
+                case 2:
                     radixCharHelper[random/10][2]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 3){
+                    break;
+                case 3:
                     radixCharHelper[random/10][3]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 4){
+                    break;
+                case 4:
                     radixCharHelper[random/10][4]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 5){
+                    break;
+                case 5:
                     radixCharHelper[random/10][5]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 6){
+                    break;
+                case 6:
                     radixCharHelper[random/10][6]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 7){
+                    break;
+                case 7:
                     radixCharHelper[random/10][7]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 8){
+                    break;
+                case 8:
                     radixCharHelper[random/10][8]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 9){
+                    break;
+                case 9:
                     radixCharHelper[random/10][9]++;
                     radixCharHelper[random/10][10]++;
+                    break;
                 }
 
             }
             if (random/10 == 2){
-                if (random % 10 == 0){
+                switch(random % 10){
+                case 0:
                     radixCharHelper[random/10][0]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 1){
+                    break;
+                case 1:
                     radixCharHelper[random/10][1]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 2){
+                    break;
+                case 2:
                     radixCharHelper[random/10][2]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 3){
+                    break;
+                case 3:
                     radixCharHelper[random/10][3]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 4){
+                    break;
+                case 4:
                     radixCharHelper[random/10][4]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 5){
+                    break;
+                case 5:
                     radixCharHelper[random/10][5]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 6){
+                    break;
+                case 6:
                     radixCharHelper[random/10][6]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 7){
+                    break;
+                case 7:
                     radixCharHelper[random/10][7]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 8){
+                    break;
+                case 8:
                     radixCharHelper[random/10][8]++;
                     radixCharHelper[random/10][10]++;
-                }
-                if (random % 10 == 9){
+                    break;
+                case 9:
                     radixCharHelper[random/10][9]++;
                     radixCharHelper[random/10][10]++;
+                    break;
                 }
 
             }
             if (random/10 == 3){
-                if (random % 10 == 0){
+                switch(random % 10){
+                case 0:
                     radixCharHelper[random][0]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 1){
+                    break;
+                case 1:
                     radixCharHelper[random][1]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 2){
+                    break;
+                case 2:
                     radixCharHelper[random][2]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 3){
+                    break;
+                case 3:
                     radixCharHelper[random][3]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 4){
+                    break;
+                case 4:
                     radixCharHelper[random][4]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 5){
+                    break;
+                case 5:
                     radixCharHelper[random][5]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 6){
+                    break;
+                case 6:
                     radixCharHelper[random][6]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 7){
+                    break;
+                case 7:
                     radixCharHelper[random][7]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 8){
+                    break;
+                case 8:
                     radixCharHelper[random][8]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 9){
+                    break;
+                case 9:
                     radixCharHelper[random][9]++;
                     radixCharHelper[random][10]++;
                 }
 
             }
             if (random/10 == 4){
-                if (random % 10 == 0){
+                switch(random % 10){
+                case 0:
                     radixCharHelper[random][0]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 1){
+                    break;
+                case 1:
                     radixCharHelper[random][1]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 2){
+                    break;
+                case 2:
                     radixCharHelper[random][2]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 3){
+                    break;
+                case 3:
                     radixCharHelper[random][3]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 4){
+                    break;
+                case 4:
                     radixCharHelper[random][4]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 5){
+                    break;
+                case 5:
                     radixCharHelper[random][5]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 6){
+                    break;
+                case 6:
                     radixCharHelper[random][6]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 7){
+                    break;
+                case 7:
                     radixCharHelper[random][7]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 8){
+                    break;
+                case 8:
                     radixCharHelper[random][8]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 9){
+                    break;
+                case 9:
                     radixCharHelper[random][9]++;
                     radixCharHelper[random][10]++;
+                    break;
                 }
 
             }
             if (random/10 == 5){
-                if (random % 10 == 0){
+                switch(random % 10){
+                case 0:
                     radixCharHelper[random][0]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 1){
+                    break;
+                case 1:
                     radixCharHelper[random][1]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 2){
+                    break;
+                case 2:
                     radixCharHelper[random][2]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 3){
+                    break;
+                case 3:
                     radixCharHelper[random][3]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 4){
+                    break;
+                case 4:
                     radixCharHelper[random][4]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 5){
+                    break;
+                case 5:
                     radixCharHelper[random][5]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 6){
+                    break;
+                case 6:
                     radixCharHelper[random][6]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 7){
+                    break;
+                case 7:
                     radixCharHelper[random][7]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 8){
+                    break;
+                case 8:
                     radixCharHelper[random][8]++;
                     radixCharHelper[random][10]++;
-                }
-                if (random % 10 == 9){
+                    break;
+                case 9:
                     radixCharHelper[random][9]++;
                     radixCharHelper[random][10]++;
+                    break;
                 }
 
             }
@@ -382,41 +392,33 @@ void SortingCompetition :: radixSortChar(char**& words){
     int threesC = 0;
     int foursC = 0;
     int fivesC = 0;
-    //These should all be changed to else if statements at the very least
-    //I know its a small amount of steps, but the computer has to check
-    //every one of these if statements before it moves on. That just add that
-    //much more computational time. I know its small in comparison to the 2.5
-    //million words we are sorting, but its something to consider
+
     for (int i = 0; i < wordArray.size(); i++){
-        if (words[i][0] - '0' == 0){
+        switch(words[i][0] - '0'){
+        case 0:
             zeros[zerosC] = words[i];
             zerosC++;
-            continue;
-        }
-        if (words[i][0] - '0' == 1){
+            break;
+        case 1:
             ones[onesC] = words[i];
             onesC++;
-            continue;
-        }
-        if (words[i][0] - '0' == 2){
+            break;
+        case 2:
             twos[twosC] = words[i];
             twosC++;
-            continue;
-        }
-        if (words[i][0] - '0' == 3){
+            break;
+        case 3:
             threes[threesC] = words[i];
             threesC++;
-            continue;
-        }
-        if (words[i][0] - '0' == 4){
+            break;
+        case 4:
             fours[foursC] = words[i];
             foursC++;
-            continue;
-        }
-        if (words[i][0] - '0' == 5){
+            break;
+        case 5:
             fives[fivesC] = words[i];
             fivesC++;
-            continue;
+            break;
         }
     }
     innerSortChar(zeros, zerosC, 0);
@@ -531,55 +533,47 @@ void SortingCompetition :: innerSortChar(char**& words, int size, int biggerNum)
     int eightsC = 0;
     int ninesC = 0;
     for (int i = 0; i < size; i++){
-        if (words[i][1] - '0' == 0){
+        switch(words[i][1] - '0'){
+        case 0:
             zeros[zerosC] = words[i];
             zerosC++;
-            continue;
-        }
-        if (words[i][1] - '0' == 1){
+            break;
+        case 1:
             ones[onesC] = words[i];
             onesC++;
-            continue;
-        }
-        if (words[i][1] - '0' == 2){
+            break;
+        case 2:
             twos[twosC] = words[i];
             twosC++;
-            continue;
-        }
-        if (words[i][1] - '0' == 3){
+            break;
+        case 3:
             threes[threesC] = words[i];
             threesC++;
-            continue;
-        }
-        if (words[i][1] - '0' == 4){
+            break;
+        case 4:
             fours[foursC] = words[i];
             foursC++;
-            continue;
-        }
-        if (words[i][1] - '0' == 5){
+            break;
+        case 5:
             fives[fivesC] = words[i];
             fivesC++;
-            continue;
-        }
-        if (words[i][1] - '0' == 6){
+            break;
+        case 6:
             sixes[sixesC] = words[i];
             sixesC++;
-            continue;
-        }
-        if (words[i][1] - '0' == 7){
+            break;
+        case 7:
             sevens[sevensC] = words[i];
             sevensC++;
-            continue;
-        }
-        if (words[i][1] - '0' == 8){
+            break;
+        case 8:
             eights[eightsC] = words[i];
             eightsC++;
-            continue;
-        }
-        if (words[i][1] - '0' == 9){
+            break;
+        case 9:
             nines[ninesC] = words[i];
             ninesC++;
-            continue;
+            break;
         }
     }
     int location = 0;
