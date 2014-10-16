@@ -28,7 +28,7 @@ void SortingCompetition :: setFileName(const string& inputFileName){
     return;
 }
 
-//Doube check that All of this is ok to have in readData
+//Double check that All of this is ok to have in readData
 bool SortingCompetition :: readData(){
     ifstream fin(fileName.c_str());
     if (!fin.is_open()){
@@ -87,7 +87,7 @@ int SortingCompetition :: StringCompare(const void* a, const void* b){
 //Then sorts the words alphabetically using qsort
 void SortingCompetition :: sortData(){
     radixSort(sortableArray);
-    qsort(sortableArray, sortableSize, sizeof(char*), StringCompare);
+    //qsort(sortableArray, sortableSize, sizeof(char*), StringCompare);
 }
 
 void SortingCompetition :: radixSort(char**& words){
@@ -214,15 +214,25 @@ void SortingCompetition :: innerSort(char**& words, int size, int biggerNum){
         }
     }
     int location = 0;
+    qsort(zeros, zerosC, sizeof(char*), StringCompare);
     radixMerge(words, zeros, location, zerosC);
+    qsort(ones, onesC, sizeof(char*), StringCompare);
     radixMerge(words, ones, location, onesC);
+    qsort(twos, twosC, sizeof(char*), StringCompare);
     radixMerge(words, twos, location, twosC);
+    qsort(threes, threesC, sizeof(char*), StringCompare);
     radixMerge(words, threes, location,threesC);
+    qsort(fours, foursC, sizeof(char*), StringCompare);
     radixMerge(words, fours, location,foursC);
+    qsort(fives, fivesC, sizeof(char*), StringCompare);
     radixMerge(words, fives, location,fivesC);
+    qsort(sixes, sixesC, sizeof(char*), StringCompare);
     radixMerge(words, sixes, location,sixesC);
+    qsort(sevens, sevensC, sizeof(char*), StringCompare);
     radixMerge(words, sevens, location,sevensC);
+    qsort(eights, eightsC, sizeof(char*), StringCompare);
     radixMerge(words, eights, location,eightsC);
+    qsort(nines, ninesC, sizeof(char*), StringCompare);
     radixMerge(words, nines, location,ninesC);
 }
 void SortingCompetition ::  radixMerge(char**& result, char**& number, int& startLocation, int size){
