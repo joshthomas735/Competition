@@ -11,6 +11,7 @@ using std :: cout;
 using std :: endl;
 using std :: string;
 
+//Constructor
 SortingCompetition::SortingCompetition(const string& inputFileName){
     fileName = inputFileName;
     radixHelper = new int*[6];
@@ -23,12 +24,16 @@ SortingCompetition::SortingCompetition(const string& inputFileName){
     return;
 }
 
+//Sets the private variable fileName equal to the input file name
 void SortingCompetition :: setFileName(const string& inputFileName){
     fileName = inputFileName;
     return;
 }
 
-//Double check that All of this is ok to have in readData
+//Reads in the data and stores the words as length prefixed C-strings
+//Stores the words inside a vector of char* 's
+//radixHelper serves as a counter to keep track of how many words of
+//various lengths are read from the input file
 bool SortingCompetition :: readData(){
     ifstream fin(fileName.c_str());
     if (!fin.is_open()){
@@ -53,7 +58,7 @@ bool SortingCompetition :: readData(){
             radixHelper[length/10][length % 10]++;
             radixHelper[length/10][10]++;
         }
-        //double check to make sure this is ok
+        //makes all words lower case. Purely an asthetic thing
         for (int i = 0; i < length; i++){
             buff[i] = tolower(buff[i]);
         }
@@ -83,12 +88,13 @@ int SortingCompetition :: StringCompare(const void* a, const void* b){
     return strcmp(char_a, char_b);
 }
 
-//Sorts the words first by length using radixSort
-//Then sorts the words alphabetically using qsort
+//Sorts the words using radixSort
 void SortingCompetition :: sortData(){
     radixSort(sortableArray);
 }
 
+//Uses radix sort functionality to sort the words based on length
+//Organizes the words into sub arrays containing words of the same length
 void SortingCompetition :: radixSort(char**& words){
     char** zeros = new char*[radixHelper[0][10]];
     char** ones = new char*[radixHelper[1][10]];
@@ -102,6 +108,8 @@ void SortingCompetition :: radixSort(char**& words){
     int threesC = 0;
     int foursC = 0;
     int fivesC = 0;
+
+    //Sorts words based on the digit in the ten's place of the word length
     for (int i = 0; i < sortableSize; i++){
         switch(words[i][0] - '0'){
         case 0:
@@ -130,12 +138,18 @@ void SortingCompetition :: radixSort(char**& words){
             break;
         }
     }
+
+    //Calls innerSort to sort the size arrays into smaller, sub catagories
+    //that are sorted based on the digit in the one's place
     innerSort(zeros, zerosC, 0);
     innerSort(ones, onesC, 1);
     innerSort(twos, twosC, 2);
     innerSort(threes, threesC, 3);
     innerSort(fours, foursC, 4);
     innerSort(fives, fivesC, 5);
+
+    //Calls radixMerge to merge all the arrays created in this function
+    //into one, full sized array which contains all the words that were sorted
     int location = 0;
     radixMerge(words, zeros, location, zerosC);
     radixMerge(words, ones, location, onesC);
@@ -147,6 +161,9 @@ void SortingCompetition :: radixSort(char**& words){
 
 }
 
+//This is the second half of the radixSort functionality.
+//This function sorts the words into smaller sub catigories than radixSort did
+//Each sub catagory is quicksorted  to put it into alphabetical order
 void SortingCompetition :: innerSort(char**& words, int size, int biggerNum){
     char** zeros = new char*[radixHelper[biggerNum][0]];
     char** ones = new char*[radixHelper[biggerNum][1]];
@@ -168,6 +185,8 @@ void SortingCompetition :: innerSort(char**& words, int size, int biggerNum){
     int sevensC = 0;
     int eightsC = 0;
     int ninesC = 0;
+
+    //Sorts words based on the digit in the one's place of the word length
     for (int i = 0; i < size; i++){
         switch(words[i][1] - '0'){
         case 0:
@@ -212,6 +231,9 @@ void SortingCompetition :: innerSort(char**& words, int size, int biggerNum){
             break;
         }
     }
+
+    //If the array of words has more than 25 words in it, the array is sorted using quick sort
+    //If the array has fewer than 25 words in it, the array is sorted using insertion sort
     int location = 0;
     if(zerosC < 25){
         //use insertion sort
@@ -240,6 +262,8 @@ void SortingCompetition :: innerSort(char**& words, int size, int biggerNum){
     qsort(nines, ninesC, sizeof(char*), StringCompare);
     radixMerge(words, nines, location,ninesC);
 }
+
+//Merges all the sub catagories created by radixSort and innerSort into one, full sized array
 void SortingCompetition ::  radixMerge(char**& result, char**& number, int& startLocation, int size){
     int counter = 0;
     for (int i = startLocation; i < startLocation + size; i++){
@@ -249,6 +273,7 @@ void SortingCompetition ::  radixMerge(char**& result, char**& number, int& star
     startLocation += counter;
 }
 
+//Outputs the sorted file to the output file specified
 void SortingCompetition :: outputData(const string& outputFileName){
     ofstream fout(outputFileName.c_str());
 
@@ -265,6 +290,7 @@ void SortingCompetition :: outputData(const string& outputFileName){
     delete [] buff;
 }
 
+//Destructor
 SortingCompetition :: ~SortingCompetition(){
     for (int i = 0; i < sortableSize; i++){
         delete [] sortableArray[i];
