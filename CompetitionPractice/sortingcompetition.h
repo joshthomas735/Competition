@@ -17,13 +17,13 @@ public:
     void outputData();
 private:
     static int StringCompare(const void*, const void*);
-    void radixSortChar(char**&);
-    void innerSortChar(char**&, int, int);
-    void radixMergeChar(char**&, char**&, int&, int);
+    void radixSort(char**&);
+    void innerSort(char**&, int, int);
+    void radixMerge(char**&, char**&, int&, int);
     ~SortingCompetition();
     int sortableSize;
-    int** radixCharHelper;
-    char** sortableArray2;
+    int** radixHelper;
+    char** sortableArray;
     vector <char*> wordArray;
     string fileName;
 };

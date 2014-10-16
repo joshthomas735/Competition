@@ -8,14 +8,15 @@
 using std :: ifstream;
 using std :: cout;
 using std :: endl;
+using std :: string;
 
 SortingCompetition::SortingCompetition(const string& inputFileName){
     fileName = inputFileName;
-    radixCharHelper = new int*[6];
+    radixHelper = new int*[6];
     for (int i = 0; i < 6; i++){
-        radixCharHelper[i] = new int[11];
+        radixHelper[i] = new int[11];
         for (int x = 0; x < 11; x++){
-            radixCharHelper[i][x] = 0;
+            radixHelper[i][x] = 0;
         }
     }
     return;
@@ -39,14 +40,14 @@ bool SortingCompetition :: readData(){
         if (length < 10){
             word[0] = '0';
             word[1] = '0' + length;
-            radixCharHelper[0][length%10]++;
-            radixCharHelper[0][10]++;
+            radixHelper[0][length%10]++;
+            radixHelper[0][10]++;
         }
         else{
             word[1] = '0' + length % 10;
             word[0] = '0' + length/10;
-            radixCharHelper[length/10][length % 10]++;
-            radixCharHelper[length/10][10]++;
+            radixHelper[length/10][length % 10]++;
+            radixHelper[length/10][10]++;
         }
         for (int i = 0; i < length; i++){
             buff[i] = tolower(buff[i]);
@@ -60,10 +61,10 @@ bool SortingCompetition :: readData(){
 }
 
 bool SortingCompetition :: prepareData(){
-    sortableArray2 = new char*[wordArray.size()];
+    sortableArray = new char*[wordArray.size()];
     sortableSize = wordArray.size();
     for (int i = 0; i < sortableSize; i++){
-        sortableArray2[i] = wordArray[i];
+        sortableArray[i] = wordArray[i];
     }
     return true;
 }
@@ -75,17 +76,17 @@ int SortingCompetition :: StringCompare(const void* a, const void* b){
 }
 
 void SortingCompetition :: sortData(){
-    radixSortChar(sortableArray2);
-    qsort(sortableArray2, sortableSize, sizeof(char*), StringCompare);
+    radixSort(sortableArray);
+    qsort(sortableArray, sortableSize, sizeof(char*), StringCompare);
 }
 
-void SortingCompetition :: radixSortChar(char**& words){
-    char** zeros = new char*[radixCharHelper[0][10]];
-    char** ones = new char*[radixCharHelper[1][10]];
-    char** twos = new char*[radixCharHelper[2][10]];
-    char** threes = new char*[radixCharHelper[3][10]];
-    char** fours = new char*[radixCharHelper[4][10]];
-    char** fives = new char*[radixCharHelper[5][10]];
+void SortingCompetition :: radixSort(char**& words){
+    char** zeros = new char*[radixHelper[0][10]];
+    char** ones = new char*[radixHelper[1][10]];
+    char** twos = new char*[radixHelper[2][10]];
+    char** threes = new char*[radixHelper[3][10]];
+    char** fours = new char*[radixHelper[4][10]];
+    char** fives = new char*[radixHelper[5][10]];
     int zerosC = 0;
     int onesC = 0;
     int twosC = 0;
@@ -120,34 +121,34 @@ void SortingCompetition :: radixSortChar(char**& words){
             break;
         }
     }
-    innerSortChar(zeros, zerosC, 0);
-    innerSortChar(ones, onesC, 1);
-    innerSortChar(twos, twosC, 2);
-    innerSortChar(threes, threesC, 3);
-    innerSortChar(fours, foursC, 4);
-    innerSortChar(fives, fivesC, 5);
+    innerSort(zeros, zerosC, 0);
+    innerSort(ones, onesC, 1);
+    innerSort(twos, twosC, 2);
+    innerSort(threes, threesC, 3);
+    innerSort(fours, foursC, 4);
+    innerSort(fives, fivesC, 5);
     int location = 0;
-    radixMergeChar(words, zeros, location, zerosC);
-    radixMergeChar(words, ones, location, onesC);
-    radixMergeChar(words, twos, location, twosC);
-    radixMergeChar(words, threes, location, threesC);
-    radixMergeChar(words, fours, location, foursC);
-    radixMergeChar(words, fives, location, fivesC);
+    radixMerge(words, zeros, location, zerosC);
+    radixMerge(words, ones, location, onesC);
+    radixMerge(words, twos, location, twosC);
+    radixMerge(words, threes, location, threesC);
+    radixMerge(words, fours, location, foursC);
+    radixMerge(words, fives, location, fivesC);
     return;
 
 }
 
-void SortingCompetition :: innerSortChar(char**& words, int size, int biggerNum){
-    char** zeros = new char*[radixCharHelper[biggerNum][0]];
-    char** ones = new char*[radixCharHelper[biggerNum][1]];
-    char** twos = new char*[radixCharHelper[biggerNum][2]];
-    char** threes = new char*[radixCharHelper[biggerNum][3]];
-    char** fours = new char*[radixCharHelper[biggerNum][4]];
-    char** fives = new char*[radixCharHelper[biggerNum][5]];
-    char** sixes = new char*[radixCharHelper[biggerNum][6]];
-    char** sevens = new char*[radixCharHelper[biggerNum][7]];
-    char** eights = new char*[radixCharHelper[biggerNum][8]];
-    char** nines = new char*[radixCharHelper[biggerNum][9]];
+void SortingCompetition :: innerSort(char**& words, int size, int biggerNum){
+    char** zeros = new char*[radixHelper[biggerNum][0]];
+    char** ones = new char*[radixHelper[biggerNum][1]];
+    char** twos = new char*[radixHelper[biggerNum][2]];
+    char** threes = new char*[radixHelper[biggerNum][3]];
+    char** fours = new char*[radixHelper[biggerNum][4]];
+    char** fives = new char*[radixHelper[biggerNum][5]];
+    char** sixes = new char*[radixHelper[biggerNum][6]];
+    char** sevens = new char*[radixHelper[biggerNum][7]];
+    char** eights = new char*[radixHelper[biggerNum][8]];
+    char** nines = new char*[radixHelper[biggerNum][9]];
     int zerosC = 0;
     int onesC = 0;
     int twosC = 0;
@@ -203,18 +204,18 @@ void SortingCompetition :: innerSortChar(char**& words, int size, int biggerNum)
         }
     }
     int location = 0;
-    radixMergeChar(words, zeros, location, zerosC);
-    radixMergeChar(words, ones, location, onesC);
-    radixMergeChar(words, twos, location, twosC);
-    radixMergeChar(words, threes, location,threesC);
-    radixMergeChar(words, fours, location,foursC);
-    radixMergeChar(words, fives, location,fivesC);
-    radixMergeChar(words, sixes, location,sixesC);
-    radixMergeChar(words, sevens, location,sevensC);
-    radixMergeChar(words, eights, location,eightsC);
-    radixMergeChar(words, nines, location,ninesC);
+    radixMerge(words, zeros, location, zerosC);
+    radixMerge(words, ones, location, onesC);
+    radixMerge(words, twos, location, twosC);
+    radixMerge(words, threes, location,threesC);
+    radixMerge(words, fours, location,foursC);
+    radixMerge(words, fives, location,fivesC);
+    radixMerge(words, sixes, location,sixesC);
+    radixMerge(words, sevens, location,sevensC);
+    radixMerge(words, eights, location,eightsC);
+    radixMerge(words, nines, location,ninesC);
 }
-void SortingCompetition ::  radixMergeChar(char**& result, char**& number, int& startLocation, int size){
+void SortingCompetition ::  radixMerge(char**& result, char**& number, int& startLocation, int size){
     int counter = 0;
     for (int i = startLocation; i < startLocation + size; i++){
         result[i] = number[counter];
@@ -227,10 +228,10 @@ void SortingCompetition :: outputData(){
     cout << "Sorted Array: "<< wordArray.size() << " words" << endl;
     char* buff = new char[3];
     for (int i = 0; i < sortableSize; i++){
-        buff[0] = sortableArray2[i][0];
-        buff[1] = sortableArray2[i][1];
+        buff[0] = sortableArray[i][0];
+        buff[1] = sortableArray[i][1];
         for (int x = 2; x < atoi(buff) + 2; x++){
-            cout << sortableArray2[i][x];
+            cout << sortableArray[i][x];
         }
         cout << endl;
     }
@@ -239,8 +240,8 @@ void SortingCompetition :: outputData(){
 
 SortingCompetition :: ~SortingCompetition(){
     for (int i = 0; i < sortableSize; i++){
-        delete [] sortableArray2[i];
+        delete [] sortableArray[i];
     }
-    delete [] sortableArray2;
+    delete [] sortableArray;
     wordArray.clear();
 }
