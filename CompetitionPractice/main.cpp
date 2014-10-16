@@ -10,14 +10,14 @@ int main()
     clock_t start;
     SortingCompetition* s1 = new SortingCompetition("input.txt");
     s1 ->readData();
-    for(int i=0; i<1; i++){
+    for(int i=0; i<100; i++){
         s1->prepareData();
         start = clock();
         s1 ->sortData();
         diff = (std::clock() - start ) / (double)CLOCKS_PER_SEC;
         mean += diff;
     }
-    std:: cout<<"printf: "<< mean/1 << std::endl;
+    std:: cout<<"printf: "<< mean/100 << std::endl;
     s1 -> outputData("output.txt");
     return 0;
 }

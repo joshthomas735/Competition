@@ -87,7 +87,6 @@ int SortingCompetition :: StringCompare(const void* a, const void* b){
 //Then sorts the words alphabetically using qsort
 void SortingCompetition :: sortData(){
     radixSort(sortableArray);
-    //qsort(sortableArray, sortableSize, sizeof(char*), StringCompare);
 }
 
 void SortingCompetition :: radixSort(char**& words){
@@ -214,8 +213,14 @@ void SortingCompetition :: innerSort(char**& words, int size, int biggerNum){
         }
     }
     int location = 0;
-    qsort(zeros, zerosC, sizeof(char*), StringCompare);
+    if(zerosC < 25){
+        //use insertion sort
+    }
+    else{
+        qsort(zeros, zerosC, sizeof(char*), StringCompare);
+    }
     radixMerge(words, zeros, location, zerosC);
+
     qsort(ones, onesC, sizeof(char*), StringCompare);
     radixMerge(words, ones, location, onesC);
     qsort(twos, twosC, sizeof(char*), StringCompare);
@@ -250,13 +255,12 @@ void SortingCompetition :: outputData(const string& outputFileName){
     fout << "Sorted Array: "<< wordArray.size() << " words" << endl;
     char* buff = new char[3];
     for (int i = 0; i < sortableSize; i++){
-//        buff[0] = sortableArray[i][0];
-//        buff[1] = sortableArray[i][1];
-//        for (int x = 2; x < atoi(buff) + 2; x++){
-//            fout << sortableArray[i][x];
-//        }
-//        fout << endl;
-        fout << sortableArray[i] << endl;
+        buff[0] = sortableArray[i][0];
+        buff[1] = sortableArray[i][1];
+        for (int x = 2; x < atoi(buff) + 2; x++){
+            fout << sortableArray[i][x];
+        }
+        fout << endl;
     }
     delete [] buff;
 }
