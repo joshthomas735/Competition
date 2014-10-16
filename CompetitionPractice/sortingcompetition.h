@@ -14,7 +14,7 @@ public:
     bool readData();
     bool prepareData();
     void sortData();
-    void outputData();
+    void outputData(const string&);
 private:
     static int StringCompare(const void*, const void*);
     void radixSort(char**&);

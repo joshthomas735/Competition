@@ -6,6 +6,7 @@
 #include "stdlib.h"
 
 using std :: ifstream;
+using std :: ofstream;
 using std :: cout;
 using std :: endl;
 using std :: string;
@@ -27,6 +28,7 @@ void SortingCompetition :: setFileName(const string& inputFileName){
     return;
 }
 
+//Doube check that All of this is ok to have in readData
 bool SortingCompetition :: readData(){
     ifstream fin(fileName.c_str());
     if (!fin.is_open()){
@@ -39,27 +41,31 @@ bool SortingCompetition :: readData(){
         char* word = new char[length+3];
         if (length < 10){
             word[0] = '0';
-            word[1] = '0' + length;
+            word[1] = (char) '0' + length;
+            word[2] = '\0';
             radixHelper[0][length%10]++;
             radixHelper[0][10]++;
         }
         else{
             word[1] = '0' + length % 10;
             word[0] = '0' + length/10;
+            word[2] = '\0';
             radixHelper[length/10][length % 10]++;
             radixHelper[length/10][10]++;
         }
+        //double check to make sure this is ok
         for (int i = 0; i < length; i++){
             buff[i] = tolower(buff[i]);
         }
         strcat(word, buff);
-        wordArray.push_back(word);
+        wordArray.push_back(word);  
     }
     delete [] buff;
     fin.close();
     return true;
 }
 
+//Coppies the words stored in the vector wordArray into a char** sortableArray
 bool SortingCompetition :: prepareData(){
     sortableArray = new char*[wordArray.size()];
     sortableSize = wordArray.size();
@@ -69,12 +75,16 @@ bool SortingCompetition :: prepareData(){
     return true;
 }
 
+//Used to compare the relative value of one char* to another
+//It is used by qsort to sort through each of the sets of words
 int SortingCompetition :: StringCompare(const void* a, const void* b){
     char const* char_a = *(char const**)a;
     char const* char_b = *(char const**)b;
     return strcmp(char_a, char_b);
 }
 
+//Sorts the words first by length using radixSort
+//Then sorts the words alphabetically using qsort
 void SortingCompetition :: sortData(){
     radixSort(sortableArray);
     qsort(sortableArray, sortableSize, sizeof(char*), StringCompare);
@@ -224,16 +234,19 @@ void SortingCompetition ::  radixMerge(char**& result, char**& number, int& star
     startLocation += counter;
 }
 
-void SortingCompetition :: outputData(){
-    cout << "Sorted Array: "<< wordArray.size() << " words" << endl;
+void SortingCompetition :: outputData(const string& outputFileName){
+    ofstream fout(outputFileName.c_str());
+
+    fout << "Sorted Array: "<< wordArray.size() << " words" << endl;
     char* buff = new char[3];
     for (int i = 0; i < sortableSize; i++){
-        buff[0] = sortableArray[i][0];
-        buff[1] = sortableArray[i][1];
-        for (int x = 2; x < atoi(buff) + 2; x++){
-            cout << sortableArray[i][x];
-        }
-        cout << endl;
+//        buff[0] = sortableArray[i][0];
+//        buff[1] = sortableArray[i][1];
+//        for (int x = 2; x < atoi(buff) + 2; x++){
+//            fout << sortableArray[i][x];
+//        }
+//        fout << endl;
+        fout << sortableArray[i] << endl;
     }
     delete [] buff;
 }

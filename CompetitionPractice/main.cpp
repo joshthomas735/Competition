@@ -6,15 +6,19 @@
 int main()
 {
     double diff;
+    double mean = 0.0;
     clock_t start;
     SortingCompetition* s1 = new SortingCompetition("input.txt");
     s1 ->readData();
-    s1->prepareData();
-    start = clock();
-    s1 ->sortData();
-    diff = (std::clock() - start ) / (double)CLOCKS_PER_SEC;
-    std:: cout<<"printf: "<< diff <<'\n';
-    s1 -> outputData();
+    for(int i=0; i<1; i++){
+        s1->prepareData();
+        start = clock();
+        s1 ->sortData();
+        diff = (std::clock() - start ) / (double)CLOCKS_PER_SEC;
+        mean += diff;
+    }
+    std:: cout<<"printf: "<< mean/1 << std::endl;
+    s1 -> outputData("output.txt");
     return 0;
 }
 
