@@ -1,4 +1,6 @@
 /************************
+ * Sorting Competition
+ * CSE 2341
  * Authors:
  *      Nick Antonelli
  *      Josh Thomas
