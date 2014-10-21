@@ -15,12 +15,12 @@ public:
     bool prepareData();
     void sortData();
     void outputData(const string&);
+    ~SortingCompetition();
 private:
     static int StringCompare(const void*, const void*);
     void radixSort(char**&);
     void innerSort(char**&, int, int);
     void radixMerge(char**&, char**&, int&, int);
-    ~SortingCompetition();
     int sortableSize;
     int** radixHelper;
     char** sortableArray;

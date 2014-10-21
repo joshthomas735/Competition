@@ -1,3 +1,10 @@
+/************************
+ * Authors:
+ *      Nick Antonelli
+ *      Josh Thomas
+ ************************/
+
+
 #include "sortingcompetition.h"
 #include <iostream>
 #include <fstream>
@@ -44,6 +51,7 @@ bool SortingCompetition :: readData(){
         fin >> buff;
         int length = strlen(buff);
         char* word = new char[length+3];
+        //converts the words into length prefixed C-strings
         if (length < 10){
             word[0] = '0';
             word[1] = (char) '0' + length;
@@ -88,7 +96,7 @@ int SortingCompetition :: StringCompare(const void* a, const void* b){
     return strcmp(char_a, char_b);
 }
 
-//Sorts the words using radixSort
+//Sorts the words by calling radixSort
 void SortingCompetition :: sortData(){
     radixSort(sortableArray);
 }
@@ -162,7 +170,7 @@ void SortingCompetition :: radixSort(char**& words){
 }
 
 //This is the second half of the radixSort functionality.
-//This function sorts the words into smaller sub catigories than radixSort did
+//This sorts the words into smaller sub catigories than radixSort did
 //Each sub catagory is quicksorted  to put it into alphabetical order
 void SortingCompetition :: innerSort(char**& words, int size, int biggerNum){
     char** zeros = new char*[radixHelper[biggerNum][0]];
@@ -232,33 +240,36 @@ void SortingCompetition :: innerSort(char**& words, int size, int biggerNum){
         }
     }
 
-    //If the array of words has more than 25 words in it, the array is sorted using quick sort
-    //If the array has fewer than 25 words in it, the array is sorted using insertion sort
+    //Each sub array is sorted alphabetically using quick sort
     int location = 0;
-    if(zerosC < 25){
-        //use insertion sort
-    }
-    else{
-        qsort(zeros, zerosC, sizeof(char*), StringCompare);
-    }
+
+    qsort(zeros, zerosC, sizeof(char*), StringCompare);
     radixMerge(words, zeros, location, zerosC);
 
     qsort(ones, onesC, sizeof(char*), StringCompare);
     radixMerge(words, ones, location, onesC);
+
     qsort(twos, twosC, sizeof(char*), StringCompare);
     radixMerge(words, twos, location, twosC);
+
     qsort(threes, threesC, sizeof(char*), StringCompare);
     radixMerge(words, threes, location,threesC);
+
     qsort(fours, foursC, sizeof(char*), StringCompare);
     radixMerge(words, fours, location,foursC);
+
     qsort(fives, fivesC, sizeof(char*), StringCompare);
     radixMerge(words, fives, location,fivesC);
+
     qsort(sixes, sixesC, sizeof(char*), StringCompare);
     radixMerge(words, sixes, location,sixesC);
+
     qsort(sevens, sevensC, sizeof(char*), StringCompare);
     radixMerge(words, sevens, location,sevensC);
+
     qsort(eights, eightsC, sizeof(char*), StringCompare);
     radixMerge(words, eights, location,eightsC);
+
     qsort(nines, ninesC, sizeof(char*), StringCompare);
     radixMerge(words, nines, location,ninesC);
 }

@@ -13,11 +13,11 @@ MAKEFILE      = Makefile
 CC            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
 CXX           = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 DEFINES       = 
-CFLAGS        = -pipe -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -mmacosx-version-min=10.6 -Wall -W -fPIE $(DEFINES)
-CXXFLAGS      = -pipe -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -mmacosx-version-min=10.6 -Wall -W -fPIE $(DEFINES)
+CFLAGS        = -pipe -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -mmacosx-version-min=10.7 -Wall -W -fPIE $(DEFINES)
+CXXFLAGS      = -pipe -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -std=c++11 -stdlib=libc++ -mmacosx-version-min=10.7 -Wall -W -fPIE $(DEFINES)
 INCPATH       = -I/Users/Josh/Qt/5.3/clang_64/mkspecs/macx-clang -I../CompetitionPractice -I.
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
-LFLAGS        = -headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -mmacosx-version-min=10.6
+LFLAGS        = -headerpad_max_install_names -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk -stdlib=libc++ -mmacosx-version-min=10.7
 LIBS          = $(SUBLIBS)  
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
@@ -150,6 +150,7 @@ DIST          = /Users/Josh/Qt/5.3/clang_64/mkspecs/features/spec_pre.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/default_pre.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/resolve_config.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/default_post.prf \
+		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/c++11.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/default_post.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/objective_c.prf \
@@ -170,7 +171,9 @@ QMAKE_COMP_QMAKE_OBJECTIVE_CFLAGS = -pipe \
 		-g \
 		-isysroot \
 		/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk \
-		-mmacosx-version-min=10.6 \
+		-std=c++11 \
+		-stdlib=libc++ \
+		-mmacosx-version-min=10.7 \
 		-Wall \
 		-W
 
@@ -304,6 +307,7 @@ Makefile: ../CompetitionPractice/CompetitionPractice.pro /Users/Josh/Qt/5.3/clan
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/default_pre.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/resolve_config.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/default_post.prf \
+		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/c++11.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/sdk.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/default_post.prf \
 		/Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/objective_c.prf \
@@ -416,6 +420,7 @@ Makefile: ../CompetitionPractice/CompetitionPractice.pro /Users/Josh/Qt/5.3/clan
 /Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/default_pre.prf:
 /Users/Josh/Qt/5.3/clang_64/mkspecs/features/resolve_config.prf:
 /Users/Josh/Qt/5.3/clang_64/mkspecs/features/default_post.prf:
+/Users/Josh/Qt/5.3/clang_64/mkspecs/features/c++11.prf:
 /Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/sdk.prf:
 /Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/default_post.prf:
 /Users/Josh/Qt/5.3/clang_64/mkspecs/features/mac/objective_c.prf:

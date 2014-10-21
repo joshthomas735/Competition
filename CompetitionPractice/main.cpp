@@ -1,26 +1,106 @@
-#include <iostream>
-#include <vector>
-#include "sortingcompetition.h"
-#include <ctime>
+/*
+ * SortingCompetition main driver
+ * CSE 2341
+ * Spring 2013
+ * Written by Jason Murphy
+ */
 
-int main()
+#include <iostream>
+#include <chrono>
+#include "SortingCompetition.h"
+
+int main(int argc, char** argv)
 {
-    double diff;
-    double mean = 0.0;
-    clock_t start;
-    SortingCompetition* s1 = new SortingCompetition("input.txt");
-    s1 ->readData();
-    for(int i=0; i<100; i++){
-        s1->prepareData();
-        start = clock();
-        s1 ->sortData();
-        diff = (std::clock() - start ) / (double)CLOCKS_PER_SEC;
-        mean += diff;
+    if (argc != 3)
+    {
+        std::cerr << "Invalid arguments" << std::endl;
+        std::cerr << "Usage: ./a.out <input file> <output file>" << std::endl;
+        return 1;
     }
-    std:: cout<<"printf: "<< mean/100 << std::endl;
-    s1 -> outputData("output.txt");
-    return 0;
+
+    //Number of times to run sort
+    const int NUM_REPS = 5;
+    unsigned int totalMilliseconds = 0;
+
+    //Create the sorter object and load the data from a file
+    SortingCompetition sorter(argv[1]);
+    if (!sorter.readData())
+    {
+        std::cerr << "Error reading data" << std::endl;
+        return 1;
+    }
+
+    for (int i = 0; i < NUM_REPS; i++)
+    {
+        //Load the unsorted data into our sorter object
+        if (!sorter.prepareData())
+        {
+            std::cerr << "Error preparing data" << std::endl;
+            return 1;
+        }
+
+        //Sort the data, and time the results
+        std::chrono::time_point<std::chrono::system_clock> start, end;
+        start = std::chrono::system_clock::now();
+        sorter.sortData();
+        end = std::chrono::system_clock::now();
+        unsigned int milliseconds = std::chrono::duration_cast<std::chrono::milliseconds>(end-start).count();
+        totalMilliseconds += milliseconds;
+        std::cout << "Sort #" << i+1 << " Time: " << milliseconds << " milliseconds" << std::endl;
+    }
+
+    //Print sorted data to a file, and print the avg.
+    sorter.outputData(argv[2]);
+    std::cout << "Average sorting time: " << totalMilliseconds / NUM_REPS << " milliseconds" << std::endl;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//#include <iostream>
+//#include <vector>
+//#include "sortingcompetition.h"
+//#include <ctime>
+
+//int main()
+//{
+//    double diff;
+//    double mean = 0.0;
+//    clock_t start;
+//    SortingCompetition* s1 = new SortingCompetition("smallData.txt");
+//    s1 ->readData();
+//    for(int i=0; i<3; i++){
+//        s1->prepareData();
+//        start = clock();
+//        s1 ->sortData();
+//        diff = (std::clock() - start ) / (double)CLOCKS_PER_SEC;
+//        mean += diff;
+//    }
+//    std:: cout<<"printf: "<< mean/3 << std::endl;
+//    s1 -> outputData("output.txt");
+//    return 0;
+//}
 
 //sorting algorithms tried
 /*void mergePart(vector <char*>& result, vector <char*>& left, vector<char*>& right){
